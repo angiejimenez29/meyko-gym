@@ -161,6 +161,9 @@ export default async function LandingPage() {
 
       <div className="w-full max-w-7xl mx-auto px-5 md:px-8 py-10 md:py-16 space-y-16 md:space-y-24">
 
+        {/* How It Works (Restored) */}
+        <HowItWorks />
+
         {/* Clases Disponibles */}
         <section className="space-y-6 md:space-y-10">
           <div className="mb-8 md:text-center flex flex-col items-center">
@@ -188,9 +191,6 @@ export default async function LandingPage() {
             </div>
           )}
         </section>
-
-        {/* How It Works (Restored) */}
-        <HowItWorks />
 
         {/* Nuestros Instructores */}
         <section className="space-y-6 md:space-y-10 pb-4">
