@@ -49,7 +49,7 @@ export function SpaceGrid({ spots, capacity, selectedSpots, onToggleSpot }: Spac
               className={cn(
                 'w-12 h-12 rounded-lg flex items-center justify-center text-sm font-bold transition-all',
                 !isAvailable && 'bg-pink-600 text-white cursor-not-allowed opacity-90',
-                isAvailable && !isSelected && 'bg-[#00E5FF] text-black hover:brightness-110',
+                isAvailable && !isSelected && 'bg-[#00E676] text-black hover:brightness-110',
                 isSelected && 'bg-yellow-400 text-black ring-4 ring-yellow-400/30 scale-105'
               )}
             >
@@ -62,7 +62,7 @@ export function SpaceGrid({ spots, capacity, selectedSpots, onToggleSpot }: Spac
       {/* Legend */}
       <div className="flex flex-col gap-3 w-full max-w-[320px] text-sm text-white/70">
         <div className="flex items-center gap-3">
-          <div className="w-5 h-5 rounded bg-[#00E5FF]"></div>
+          <div className="w-5 h-5 rounded bg-[#00E676]"></div>
           <span>Espacio disponible</span>
         </div>
         <div className="flex items-center gap-3">

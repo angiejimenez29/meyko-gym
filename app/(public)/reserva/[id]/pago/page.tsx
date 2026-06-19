@@ -64,7 +64,7 @@ export default async function PaymentPage({ params, searchParams }: { params: Pr
 
   return (
     <div className="min-h-screen bg-[#0B0914] flex flex-col relative">
-      <TopBar title="Pago con Yape" backUrl={`/reserva/${resolvedParams.id}/espacio`} />
+      <TopBar title="Pago con Yape" backHref={`/reserva/${resolvedParams.id}/espacio`} />
 
       <div className="flex-1 w-full max-w-md mx-auto px-5 py-6">
         <div className="flex items-center justify-between mb-8">

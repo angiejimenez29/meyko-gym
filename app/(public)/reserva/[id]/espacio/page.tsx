@@ -41,7 +41,7 @@ export default async function SpaceSelectionPage({ params }: { params: Promise<{
 
   return (
     <div className="min-h-screen bg-[#0B0914] flex flex-col relative overflow-hidden">
-      <TopBar title="Selecciona tu Espacio" backUrl={`/reserva/${resolvedParams.id}`} />
+      <TopBar title="Selecciona tu Espacio" backHref={`/reserva/${resolvedParams.id}`} />
 
       <div className="text-center mt-2 mb-6 space-y-1">
          <p className="text-white/60 text-sm capitalize">{dateStr} - {timeStr}</p>

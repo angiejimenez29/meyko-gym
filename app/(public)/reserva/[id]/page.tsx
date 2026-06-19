@@ -57,7 +57,7 @@ export default async function ClassDetailsPage({ params }: { params: Promise<{ i
 
   return (
     <div className="min-h-screen bg-[#0B0914] flex flex-col pb-24">
-      <TopBar title="Detalles de la Clase" backUrl="/clases" />
+      <TopBar title="Detalles de la Clase" backHref="/clases" />
 
       <main className="flex-1 w-full max-w-md mx-auto px-5 mt-6 space-y-6">
         <BookingStepper currentStep={1} />
