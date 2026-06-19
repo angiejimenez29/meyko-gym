@@ -32,7 +32,7 @@ export default async function ConfirmationPage({ params, searchParams }: { param
   const supabase = await createClient()
 
   // We query ONLY sessions because reservations table is blocked by RLS for public read
-  const { data: session, error } = await supabase
+  const { data, error } = await supabase
     .from('sessions')
     .select(`
       session_date,
@@ -43,6 +43,8 @@ export default async function ConfirmationPage({ params, searchParams }: { param
     `)
     .eq('id', resolvedParams.id)
     .single()
+
+  const session = data as any
 
   if (error || !session) {
     // Return a fallback UI instead of 404 just in case

@@ -37,10 +37,12 @@ export async function createReservation(formData: FormData) {
     throw new Error('Spots not found')
   }
 
-  const unavailableSpots = spotsData.filter(s => s.status !== 'available')
+  const spots = spotsData as any[]
+
+  const unavailableSpots = spots.filter(s => s.status !== 'available')
   if (unavailableSpots.length > 0) {
     // Check if this exact user just booked it (handles double-clicks or page reloads)
-    const { data: existingReservations } = await supabase
+    const { data } = await supabase
       .from('reservations')
       .select('id')
       .eq('session_id', sessionId)
@@ -48,6 +50,8 @@ export async function createReservation(formData: FormData) {
       .eq('client_phone', clientPhone)
       .order('reserved_at', { ascending: false })
       .limit(1)
+
+    const existingReservations = data as any[]
 
     if (existingReservations && existingReservations.length > 0) {
       // Just redirect them to their confirmation page
@@ -58,11 +62,10 @@ export async function createReservation(formData: FormData) {
     }
   }
 
-  const spotIds = spotsData.map(s => s.id)
+  const spotIds = spots.map(s => s.id)
 
   // 2. Call the RPC to create the reservation atomically
-  const { data: reservationId, error: rpcError } = await supabase
-    .rpc('create_reservation', {
+  const { data: reservationId, error: rpcError } = await (supabase.rpc as any)('create_reservation', {
       p_session_id: sessionId,
       p_client_name: clientName,
       p_client_phone: clientPhone,

@@ -18,7 +18,7 @@ export default async function SpaceSelectionPage({ params }: { params: Promise<{
   const resolvedParams = await params
   const supabase = await createClient()
 
-  const { data: session, error } = await supabase
+  const { data, error } = await supabase
     .from('sessions')
     .select(`
       id,
@@ -29,6 +29,8 @@ export default async function SpaceSelectionPage({ params }: { params: Promise<{
     `)
     .eq('id', resolvedParams.id)
     .single()
+
+  const session = data as any
 
   if (error || !session) {
     notFound()
