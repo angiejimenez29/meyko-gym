@@ -10,20 +10,20 @@ export default async function PublicLayout({
   const { data: { user } } = await supabase.auth.getUser()
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0B0914] text-white font-sans">
+    <div className="min-h-screen flex flex-col bg-background text-foreground font-sans">
       <Navbar user={user} />
       <main className="flex-1 flex flex-col w-full">
         {children}
       </main>
       
-      <footer className="py-12 flex flex-col items-center gap-4 mt-12 bg-[#0B0914] border-t border-white/5">
+      <footer className="py-12 flex flex-col items-center gap-4 mt-12 bg-background border-t border-foreground/5">
         <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#D6007A] to-[#9B00E8] flex items-center justify-center shadow-lg">
            <span className="text-white font-bold text-lg">M</span>
         </div>
-        <h2 className="text-lg font-bold text-white">Meikyo Gym</h2>
-        <p className="text-xs text-white/40 uppercase tracking-widest mt-1 font-medium">ENTRENA A OTRO NIVEL</p>
-        <div className="w-full h-[1px] bg-white/10 my-4 max-w-[200px] md:max-w-md"></div>
-        <p className="text-[10px] md:text-xs text-white/30">© {new Date().getFullYear()} Meikyo Gym. Todos los derechos reservados.</p>
+        <h2 className="text-lg font-bold text-foreground">Meikyo Gym</h2>
+        <p className="text-xs text-foreground/80 uppercase tracking-widest mt-1 font-medium">ENTRENA A OTRO NIVEL</p>
+        <div className="w-full h-[1px] bg-foreground/10 my-4 max-w-[200px] md:max-w-md"></div>
+        <p className="text-[10px] md:text-xs text-foreground/80">© {new Date().getFullYear()} Meikyo Gym. Todos los derechos reservados.</p>
       </footer>
     </div>
   )

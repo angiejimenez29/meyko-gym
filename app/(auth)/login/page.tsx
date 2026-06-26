@@ -44,27 +44,34 @@ export default function LoginPage() {
 
       <form action={formAction} className="space-y-4 w-full">
         <div className="relative">
+          <label htmlFor="login-email" className="sr-only">Correo Electrónico</label>
           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#84849A]">
             <Mail className="w-4 h-4" />
           </div>
           <input
+            id="login-email"
             type="email"
             name="email"
             required
-            className="w-full bg-[#151226] border border-white/5 rounded-2xl pl-12 pr-4 py-3.5 text-[13px] text-white placeholder-[#84849A] focus:outline-none focus:border-[#D6007A]/50 focus:bg-[#1A1630] transition-colors"
+            autoComplete="email"
+            inputMode="email"
+            className="w-full bg-container border border-foreground/5 rounded-2xl pl-12 pr-4 py-3.5 text-[13px] text-foreground placeholder-foreground/50 focus:outline-none focus:border-[#D6007A]/50 focus:bg-background transition-colors"
             placeholder="cesar.reyes@gmail.com"
           />
         </div>
 
         <div className="relative">
+          <label htmlFor="login-password" className="sr-only">Contraseña</label>
           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#84849A]">
             <Lock className="w-4 h-4" />
           </div>
           <input
+            id="login-password"
             type="password"
             name="password"
             required
-            className="w-full bg-[#151226] border border-white/5 rounded-2xl pl-12 pr-4 py-3.5 text-[13px] text-white placeholder-[#84849A] focus:outline-none focus:border-[#D6007A]/50 focus:bg-[#1A1630] transition-colors"
+            autoComplete="current-password"
+            className="w-full bg-container border border-foreground/5 rounded-2xl pl-12 pr-4 py-3.5 text-[13px] text-foreground placeholder-foreground/50 focus:outline-none focus:border-[#D6007A]/50 focus:bg-background transition-colors"
             placeholder="••••••••"
           />
         </div>
@@ -82,7 +89,7 @@ export default function LoginPage() {
       </form>
 
       <div className="mt-8 text-center">
-        <Link href="#" className="text-[12px] text-[#84849A] hover:text-white transition-colors font-medium">
+        <Link href="#" className="text-[12px] text-foreground/80 hover:text-foreground transition-colors font-medium hover:underline focus-visible:underline">
           ¿Olvidaste tu contraseña?
         </Link>
       </div>

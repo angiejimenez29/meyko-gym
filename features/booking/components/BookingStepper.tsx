@@ -19,8 +19,8 @@ export function BookingStepper({ currentStep }: BookingStepperProps) {
             {/* Circle */}
             <div
               className={cn(
-                'flex items-center justify-center w-8 h-8 rounded-full text-sm font-medium transition-colors',
-                isCompleted ? 'bg-yellow-400 text-black' : isActive ? 'bg-pink-500 text-white' : 'bg-white/5 text-white/40'
+                'w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors z-10 shrink-0',
+                isCompleted ? 'bg-state-yellow text-black' : isActive ? 'bg-pink-500 text-white' : 'bg-foreground/5 text-foreground/80'
               )}
             >
               {isCompleted ? <Check className="w-4 h-4" /> : step}
@@ -30,8 +30,8 @@ export function BookingStepper({ currentStep }: BookingStepperProps) {
             {index < steps.length - 1 && (
               <div
                 className={cn(
-                  'h-[2px] w-8 mx-2 transition-colors',
-                  step < currentStep ? 'bg-yellow-400' : 'bg-white/10'
+                  'h-1 transition-colors',
+                  step < currentStep ? 'bg-state-yellow' : 'bg-foreground/10'
                 )}
               />
             )}

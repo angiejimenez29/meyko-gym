@@ -1,7 +1,37 @@
 @import "tailwindcss";
 
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-container: var(--container);
+  
+  --color-state-green: var(--neon-green);
+  --color-state-magenta: var(--magenta);
+  --color-state-yellow: var(--glow-yellow);
+  --color-state-cyan: var(--neon-cyan);
+  --color-whatsapp: var(--whatsapp);
+  
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
 :root {
-  /* Fondos oscuros globales */
+  /* Fondos claros globales (Light Mode) */
+  --background: #f8fafc; /* slate-50 */
+  --foreground: #0f172a; /* slate-900 */
+  
+  /* Contenedores y componentes */
+  --container: #ffffff;
+  
+  /* Colores de estado (igual o ajustados para que se vean bien en claro) */
+  --neon-green: #16a34a; /* verde mas oscuro para light mode */
+  --magenta: #d946ef;
+  --glow-yellow: #eab308;
+  --neon-cyan: #0891b2; /* cyan-600 */
+  --whatsapp: #16a34a; /* green-600 */
+}
+
+.dark {
+  /* Fondos oscuros globales (Dark Mode) */
   --background: #0B0914;
   --foreground: #ffffff;
   
@@ -12,18 +42,8 @@
   --neon-green: #39FF14;
   --magenta: #FF00FF;
   --glow-yellow: #FFFF00;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-container: var(--container);
-  
-  --color-state-green: var(--neon-green);
-  --color-state-magenta: var(--magenta);
-  --color-state-yellow: var(--glow-yellow);
-  
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --neon-cyan: #00E5FF;
+  --whatsapp: #25D366;
 }
 
 body {
@@ -33,7 +53,15 @@ body {
 
 /* Glassmorphism base utility */
 @utility glass {
-  background-color: rgba(21, 18, 38, 0.6);
+  background-color: color-mix(in srgb, var(--container) 60%, transparent);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid color-mix(in srgb, var(--foreground) 8%, transparent);
+}
+
+@layer base {
+  a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--foreground);
+    border-radius: 4px;
+  }
 }

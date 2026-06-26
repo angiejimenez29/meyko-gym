@@ -42,18 +42,18 @@ export default async function SpaceSelectionPage({ params }: { params: Promise<{
   const spots = session.session_spots || []
 
   return (
-    <div className="min-h-screen bg-[#0B0914] flex flex-col relative overflow-hidden">
+    <div className="min-h-screen bg-background flex flex-col relative overflow-hidden">
       <TopBar title="Selecciona tu Espacio" backHref={`/reserva/${resolvedParams.id}`} />
 
       <div className="text-center mt-2 mb-6 space-y-1">
-         <p className="text-white/60 text-sm capitalize">{dateStr} - {timeStr}</p>
+         <p className="text-foreground/80 text-sm capitalize">{dateStr} - {timeStr}</p>
       </div>
 
       <BookingStepper currentStep={2} />
 
       <div className="text-center mb-6 px-5">
-         <h2 className="text-white font-medium text-lg">Mapa de la Planta del Gimnasio</h2>
-         <p className="text-white/40 text-sm mt-1">Toca el número del espacio que deseas reservar</p>
+         <h2 className="text-foreground font-medium text-lg">Mapa de la Planta del Gimnasio</h2>
+         <p className="text-foreground/80 text-sm mt-1">Toca el número del espacio que deseas reservar</p>
       </div>
 
       <SpaceSelectionFlow 

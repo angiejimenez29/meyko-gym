@@ -117,7 +117,7 @@ export default async function LandingPage() {
           {/* Content */}
           <div className="md:w-1/2 flex flex-col items-center md:items-start z-10">
             {/* Placeholder Logo for Mobile (Hidden on Desktop) */}
-            <div className="md:hidden w-24 h-24 rounded-full bg-[#151226] flex items-center justify-center mb-6 shadow-2xl overflow-hidden relative">
+            <div className="md:hidden w-24 h-24 rounded-full bg-container flex items-center justify-center mb-6 shadow-2xl overflow-hidden relative">
               <div className="absolute inset-0 bg-gradient-to-br from-[#D6007A] to-transparent opacity-20"></div>
               <div className="flex gap-1.5 transform rotate-12 relative z-10">
                 <div className="w-2.5 h-8 bg-[#D6007A] rounded-full transform -skew-x-[20deg]"></div>
@@ -140,7 +140,7 @@ export default async function LandingPage() {
 
           {/* Desktop Graphic / Logo */}
           <div className="hidden md:flex w-1/2 justify-end z-10">
-            <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-full bg-[#151226]/80 backdrop-blur-xl flex items-center justify-center shadow-[0_0_50px_rgba(214,0,122,0.5)] overflow-hidden relative border border-white/20">
+            <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-full bg-container/80 backdrop-blur-xl flex items-center justify-center shadow-[0_0_50px_rgba(214,0,122,0.5)] overflow-hidden relative border border-foreground/20">
               <div className="absolute inset-0 bg-gradient-to-br from-[#D6007A] to-[#F9A826] opacity-30"></div>
               <div className="flex gap-4 transform rotate-12 relative z-10">
                 <div className="w-6 h-24 bg-gradient-to-b from-[#D6007A] to-[#F9A826] rounded-full transform -skew-x-[20deg]"></div>
@@ -167,13 +167,13 @@ export default async function LandingPage() {
         {/* Clases Disponibles */}
         <section className="space-y-6 md:space-y-10">
           <div className="mb-8 md:text-center flex flex-col items-center">
-            <h2 className="text-[22px] md:text-4xl font-bold text-white mb-1 md:mb-3">Clases Disponibles</h2>
-            <p className="text-xs md:text-base text-white/50 font-medium">Reserva tu espacio en nuestras sesiones exclusivas y más próximas.</p>
+            <h2 className="text-[22px] md:text-4xl font-bold text-foreground mb-1 md:mb-3">Clases Disponibles</h2>
+            <p className="text-xs md:text-base text-foreground/70 font-medium">Reserva tu espacio en nuestras sesiones exclusivas y más próximas.</p>
           </div>
 
           {mappedSessions.length === 0 ? (
-            <div className="text-center py-12 bg-white/5 rounded-3xl border border-white/10">
-              <p className="text-white/60">No hay clases programadas por el momento.</p>
+            <div className="text-center py-12 bg-foreground/5 rounded-3xl border border-foreground/10">
+              <p className="text-foreground/80">No hay clases programadas por el momento.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
@@ -185,8 +185,8 @@ export default async function LandingPage() {
 
           {mappedSessions.length > 0 && (
             <div className="flex justify-center mt-8">
-              <Link href="/clases" className="text-[#D6007A] font-bold text-sm hover:underline">
-                Ver todas las clases →
+              <Link href="/clases" className="bg-container border border-foreground/10 text-foreground font-bold py-3 px-8 rounded-full hover:bg-foreground/5 hover:border-foreground/30 transition-colors shadow-lg flex items-center gap-2">
+                Ver todas las clases <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
           )}
@@ -195,8 +195,8 @@ export default async function LandingPage() {
         {/* Nuestros Instructores */}
         <section className="space-y-6 md:space-y-10 pb-4">
           <div className="text-center">
-            <h2 className="text-[22px] md:text-4xl font-bold text-white mb-1 md:mb-3">Nuestro Equipo</h2>
-            <p className="text-xs md:text-base text-white/50 font-medium">Entrena con los profesionales más experimentados y dedicados.</p>
+            <h2 className="text-[22px] md:text-4xl font-bold text-foreground mb-1 md:mb-3">Nuestro Equipo</h2>
+            <p className="text-xs md:text-base text-foreground/70 font-medium">Entrena con los profesionales más experimentados y dedicados.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
@@ -212,7 +212,7 @@ export default async function LandingPage() {
           </div>
 
           <div className="flex justify-center mt-8">
-            <Link href="/instructores" className="bg-[#151226] border border-white/10 text-white font-bold py-3 px-8 rounded-full hover:bg-white/5 hover:border-white/30 transition-colors shadow-lg flex items-center gap-2">
+              <Link href="/instructores" className="bg-container border border-foreground/10 text-foreground font-bold py-3 px-8 rounded-full hover:bg-foreground/5 hover:border-foreground/30 transition-colors shadow-lg flex items-center gap-2">
               Ver a todos los instructores <ChevronRight className="w-4 h-4" />
             </Link>
           </div>
@@ -221,46 +221,46 @@ export default async function LandingPage() {
         {/* Ubicación */}
         <section className="space-y-6 md:space-y-10 pb-4">
           <div className="text-center">
-            <h2 className="text-[22px] md:text-4xl font-bold text-white mb-1 md:mb-3">Ubicación</h2>
-            <p className="text-xs md:text-base text-white/50 font-medium">Encuentra nuestro centro de entrenamiento.</p>
+            <h2 className="text-[22px] md:text-4xl font-bold text-foreground mb-1 md:mb-3">Ubicación</h2>
+            <p className="text-xs md:text-base text-foreground/70 font-medium">Encuentra nuestro centro de entrenamiento.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 bg-[#151226]/50 p-6 md:p-10 rounded-[40px] border border-white/5">
-            <div className="bg-[#151226] rounded-3xl p-6 md:p-8 flex flex-col justify-center gap-6 shadow-lg border border-white/5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 bg-container/50 p-6 md:p-10 rounded-[40px] border border-foreground/5">
+            <div className="bg-container rounded-3xl p-6 md:p-8 flex flex-col justify-center gap-6 shadow-lg border border-foreground/5">
               <div className="flex items-start gap-4 md:gap-6">
                 <div className="bg-[#D6007A]/10 p-3 md:p-4 rounded-full text-[#D6007A] mt-1 shadow-inner">
                   <MapPin className="w-5 h-5 md:w-6 md:h-6" />
                 </div>
                 <div>
-                  <div className="text-sm md:text-lg text-white font-bold mb-1">Dirección</div>
-                  <div className="text-[13px] md:text-base text-white/60">Av Tupac Amaru km 13.5</div>
-                  <div className="text-[13px] md:text-base text-white/60">Prdo Depósito Año Nuevo, Comas</div>
+                  <div className="text-sm md:text-lg text-foreground font-bold mb-1">Dirección</div>
+                  <div className="text-[13px] md:text-base text-foreground/80">Av Tupac Amaru km 13.5</div>
+                  <div className="text-[13px] md:text-base text-foreground/80">Prdo Depósito Año Nuevo, Comas</div>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 md:gap-6">
-                <div className="bg-[#00E5FF]/10 p-3 md:p-4 rounded-full text-[#00E5FF] mt-1 shadow-inner">
+              <a href="tel:+51999999999" className="flex items-start gap-4 md:gap-6 group hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground rounded-xl p-1 -m-1">
+                <div className="bg-[#D6007A]/10 p-3 md:p-4 rounded-full text-[#D6007A] mt-1 shadow-inner group-hover:bg-[#D6007A]/20 transition-colors">
                   <Phone className="w-5 h-5 md:w-6 md:h-6" />
                 </div>
-                <div>
-                  <div className="text-sm md:text-lg text-white font-bold mb-1">Teléfono</div>
-                  <div className="text-[13px] md:text-base text-[#00E5FF] font-medium">+51 999 999 999</div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-sm md:text-lg text-foreground font-bold mb-1">Teléfono</div>
+                  <div className="text-[13px] md:text-base text-[#D6007A] font-medium truncate">+51 999 999 999</div>
                 </div>
-              </div>
+              </a>
 
-              <div className="flex items-start gap-4 md:gap-6">
-                <div className="bg-[#D6007A]/10 p-3 md:p-4 rounded-full text-[#D6007A] mt-1 shadow-inner">
+              <a href="mailto:info@meikyogym.com" className="flex items-start gap-4 md:gap-6 group hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground rounded-xl p-1 -m-1">
+                <div className="bg-[#D6007A]/10 p-3 md:p-4 rounded-full text-[#D6007A] mt-1 shadow-inner group-hover:bg-[#D6007A]/20 transition-colors">
                   <Mail className="w-5 h-5 md:w-6 md:h-6" />
                 </div>
-                <div>
-                  <div className="text-sm md:text-lg text-white font-bold mb-1">Email</div>
-                  <div className="text-[13px] md:text-base text-[#D6007A] font-medium">info@meikyogym.com</div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-sm md:text-lg text-foreground font-bold mb-1">Email</div>
+                  <div className="text-[13px] md:text-base text-[#D6007A] font-medium truncate">info@meikyogym.com</div>
                 </div>
-              </div>
+              </a>
             </div>
 
             {/* Interactive Map */}
-            <div className="w-full h-64 md:h-auto min-h-[300px] bg-[#151226] rounded-3xl border border-white/5 shadow-lg relative overflow-hidden">
+            <div className="w-full h-64 md:h-auto min-h-[300px] bg-container rounded-3xl border border-foreground/5 shadow-lg relative overflow-hidden">
               <MapWrapper />
             </div>
           </div>
