@@ -65,53 +65,59 @@ export default async function PaymentPage({ params, searchParams }: { params: Pr
   const totalAmount = session.price * spotsArray.length
 
   return (
-    <div className="min-h-screen bg-[#0B0914] flex flex-col relative">
+    <div className="min-h-screen bg-background flex flex-col relative">
       <TopBar title="Pago con Yape" backHref={`/reserva/${resolvedParams.id}/espacio`} />
 
       <div className="flex-1 w-full max-w-md mx-auto px-5 py-6">
         <div className="flex items-center justify-between mb-8">
            <div className="space-y-1">
-             <p className="text-white/60 text-xs uppercase tracking-widest">Powered by Culqi</p>
-             <p className="text-white font-bold text-3xl">S/. {totalAmount.toFixed(2)}</p>
+             <p className="text-foreground/80 text-xs uppercase tracking-widest">Powered by Culqi</p>
+             <p className="text-foreground font-bold text-3xl">S/. {totalAmount.toFixed(2)}</p>
            </div>
         </div>
 
         <BookingStepper currentStep={3} />
 
         {/* Resumen Card */}
-        <div className="bg-[#151226] border border-white/5 rounded-2xl p-6 space-y-4 mb-8">
-          <div className="flex items-center justify-between border-b border-white/10 pb-4">
-            <span className="text-white/60 text-sm">
+        <div className="bg-container border border-foreground/10 shadow-xl shadow-black/10 dark:shadow-black/50 rounded-2xl p-6 space-y-4 mb-8">
+          <div className="flex items-center justify-between border-b border-foreground/10 pb-4">
+            <span className="text-foreground/80 text-sm">
               {spotsArray.length === 1 ? 'Espacio seleccionado' : 'Espacios seleccionados'}
             </span>
-            <span className="text-yellow-400 font-bold text-2xl">
+            <span className="text-state-yellow font-bold text-2xl">
               {spotsArray.map(s => `#${s}`).join(', ')}
             </span>
           </div>
           
           <div className="space-y-2 pt-2">
             <div className="flex justify-between text-sm">
-              <span className="text-white/50">Nombre</span>
-              <span className="text-white font-medium">{clientName}</span>
+              <span className="text-foreground/70">Nombre</span>
+              <span className="text-foreground font-medium">{clientName}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-white/50">Celular</span>
-              <span className="text-white font-medium">{clientPhone}</span>
+              <span className="text-foreground/70">Celular</span>
+              <span className="text-foreground font-medium">{clientPhone}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-white/50">Instructor</span>
-              <span className="text-white font-medium">{instructorName}</span>
+              <span className="text-foreground/70">Instructor</span>
+              <span className="text-foreground font-medium">{instructorName}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-white/50">Día y hora</span>
-              <span className="text-white font-medium capitalize">{dateTimeStr}</span>
+              <span className="text-foreground/70 text-sm">Resumen Total</span>
+              <span className="text-state-yellow font-bold text-2xl">
+                S/. {totalAmount.toFixed(2)}
+              </span>
             </div>
             {session.theme && (
               <div className="flex justify-between text-sm">
-                <span className="text-white/50">Temática</span>
-                <span className="text-white font-medium">{session.theme}</span>
+                <span className="text-foreground/70">Temática</span>
+                <span className="text-foreground font-medium">{session.theme}</span>
               </div>
             )}
+            <div className="flex justify-between text-sm">
+              <span className="text-foreground/70">Día y hora</span>
+              <span className="text-foreground font-medium capitalize">{dateTimeStr}</span>
+            </div>
           </div>
         </div>
 
@@ -120,8 +126,8 @@ export default async function PaymentPage({ params, searchParams }: { params: Pr
              {/* Mock Yape Logo */}
              <span className="text-white font-bold italic text-2xl">Yape</span>
           </div>
-          <p className="text-white font-medium">Pago con Yape</p>
-          <p className="text-white/50 text-sm px-6">Serás redirigido de forma segura a la app de Yape para completar esta transacción.</p>
+          <p className="text-foreground font-medium">Pago con Yape</p>
+          <p className="text-foreground/70 text-sm px-6">Serás redirigido de forma segura a la app de Yape para completar esta transacción.</p>
           
           <form action={createReservation}>
             <input type="hidden" name="sessionId" value={session.id} />
@@ -132,14 +138,14 @@ export default async function PaymentPage({ params, searchParams }: { params: Pr
             <YapeSubmitButton amount={totalAmount} />
           </form>
 
-          <div className="pt-6 border-t border-white/5 flex items-center justify-center gap-6 text-white/40 text-xs">
+          <div className="pt-6 border-t border-foreground/5 flex items-center justify-center gap-6 text-foreground/80 text-xs">
             <div className="flex items-center gap-1">
               <ShieldCheck className="w-4 h-4" />
               <span>SSL Encriptado</span>
             </div>
             <div className="flex items-center gap-1">
               <ShieldCheck className="w-4 h-4" />
-              <span>Powered by Culqi</span>
+              <span>Pagos Seguros</span>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-[#0B0914] relative overflow-hidden">
+    <div className="min-h-screen flex flex-col justify-center items-center bg-background relative overflow-hidden">
       {/* Soft center glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#D6007A]/10 blur-[100px] rounded-full pointer-events-none"></div>
       

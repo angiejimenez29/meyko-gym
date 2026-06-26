@@ -49,9 +49,9 @@ export default async function ConfirmationPage({ params, searchParams }: { param
   if (error || !session) {
     // Return a fallback UI instead of 404 just in case
     return (
-      <div className="min-h-screen bg-[#0B0914] flex flex-col items-center justify-center p-6 text-center space-y-4">
-        <h1 className="text-3xl font-bold text-white">Reserva Confirmada</h1>
-        <p className="text-white/70">Tu reserva se guardó, pero hubo un problema al cargar los detalles de la sesión.</p>
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6 text-center space-y-4">
+        <h1 className="text-3xl font-bold text-foreground">Reserva Confirmada</h1>
+        <p className="text-foreground/70">Tu reserva se guardó, pero hubo un problema al cargar los detalles de la sesión.</p>
         <Link href="/">
           <button className="px-6 py-3 bg-[#D6007A] text-white rounded-xl font-bold">Volver al Inicio</button>
         </Link>
@@ -66,16 +66,16 @@ export default async function ConfirmationPage({ params, searchParams }: { param
   const dateTimeStr = session ? formatSessionDateTimeStr(session.session_date, session.start_time) : ''
 
   return (
-    <div className="min-h-screen bg-[#0B0914] flex flex-col relative pb-12">
+    <div className="min-h-screen bg-background flex flex-col relative pb-12">
       {/* Remove back button for confirmation page, or use a custom top bar, but the design shows a hamburger menu. We'll just show Logo and Menu for now */}
       <div className="flex items-center justify-between px-5 py-4">
          <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-pink-500 to-purple-500 flex items-center justify-center">
                <span className="text-white font-bold italic text-sm">M</span>
             </div>
-            <span className="text-white font-semibold">Meikyo Gym</span>
+            <span className="text-foreground font-semibold">Meikyo Gym</span>
          </div>
-         <button className="p-2 text-white/80">
+         <button className="p-2 text-foreground/80">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
          </button>
       </div>
@@ -101,43 +101,44 @@ export default async function ConfirmationPage({ params, searchParams }: { param
         <BookingStepper currentStep={4} />
 
         {/* Resumen Card */}
-        <div className="bg-[#151226] border border-white/5 rounded-2xl p-6 space-y-4">
-          <div className="flex items-center justify-between border-b border-white/10 pb-4">
-            <span className="text-white/60 text-sm">{isMultiple ? 'Espacios' : 'Espacio'}</span>
-            <span className="text-yellow-400 font-bold text-2xl">{spotsString}</span>
+        <div className="bg-container border border-foreground/5 rounded-2xl p-6 space-y-4">
+          <div className="flex flex-col items-center justify-center p-6 bg-foreground/5 rounded-3xl border border-foreground/10 space-y-2">
+            <span className="text-sm text-foreground/80 uppercase tracking-widest font-semibold">Espacios Reservados</span>
+            <span className="text-state-yellow font-bold text-2xl">{spotsString}</span>
           </div>
           
           <div className="space-y-4 pt-2">
             <div className="flex justify-between text-sm">
-              <span className="text-white/50">Nombre</span>
-              <span className="text-white font-medium">{clientName}</span>
+              <span className="text-foreground/70">Nombre</span>
+              <span className="text-foreground font-medium">{clientName}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-white/50">Celular</span>
-              <span className="text-white font-medium">{clientPhone}</span>
+              <span className="text-foreground/70">Celular</span>
+              <span className="text-foreground font-medium">{clientPhone}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-white/50">Instructor</span>
-              <span className="text-white font-medium">{instructorName}</span>
+              <span className="text-foreground/70">Instructor</span>
+              <span className="text-foreground font-medium">{instructorName}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-white/50">Día y hora</span>
-              <span className="text-white font-medium capitalize">{dateTimeStr}</span>
+              <span className="text-foreground/70">Día y hora</span>
+              <span className="text-foreground font-medium capitalize">{dateTimeStr}</span>
             </div>
             {session.theme && (
               <div className="flex justify-between text-sm">
-                <span className="text-white/50">Temática</span>
-                <span className="text-white font-medium">{session.theme}</span>
+                <span className="text-foreground/70">Temática</span>
+                <span className="text-foreground font-medium">{session.theme}</span>
               </div>
             )}
           </div>
         </div>
 
         {/* Importante Notice */}
-        <div className="bg-[#1f1a24] border border-[#3b3024] rounded-xl p-4">
-          <p className="text-white/70 text-sm leading-relaxed">
-            <strong className="text-yellow-400 font-bold">Importante:</strong> Llega 10 minutos antes de la clase. Escanea el QR en la entrada para un check-in automático.
-          </p>
+        <div className="bg-state-yellow/10 border border-state-yellow/20 rounded-2xl p-4 flex gap-3 text-sm text-foreground/80 leading-relaxed shadow-inner">
+            <div className="text-state-yellow mt-0.5">ℹ️</div>
+            <p>
+            <strong className="text-state-yellow font-bold">Importante:</strong> Llega 10 minutos antes de la clase. Escanea el QR en la entrada para un check-in automático.
+            </p>
         </div>
 
         <Link href="/" className="block w-full mt-8">

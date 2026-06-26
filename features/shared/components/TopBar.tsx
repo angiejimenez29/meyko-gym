@@ -10,13 +10,13 @@ interface TopBarProps {
 
 export function TopBar({ title, backHref, className }: TopBarProps) {
   return (
-    <div className={cn("flex items-center h-16 px-4 border-b border-white/10 bg-[#0B0914]/95 backdrop-blur supports-[backdrop-filter]:bg-[#0B0914]/60 sticky top-0 z-50", className)}>
+    <div className={cn("flex items-center h-16 px-4 border-b border-foreground/10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50", className)}>
       {backHref && (
-        <Link href={backHref} className="mr-4 p-2 rounded-full hover:bg-white/10 transition-colors">
-          <ChevronLeft className="w-6 h-6 text-white" />
+        <Link href={backHref} className="mr-4 p-2 rounded-full hover:bg-foreground/10 transition-colors">
+          <ChevronLeft className="w-6 h-6 text-foreground" />
         </Link>
       )}
-      <h1 className="text-lg font-semibold text-white">{title}</h1>
+      <h1 className="text-lg font-semibold text-foreground">{title}</h1>
     </div>
   )
 }

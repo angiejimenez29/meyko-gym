@@ -13,9 +13,9 @@ export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
         className={cn(
           "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors",
           {
-            "bg-[#FF00FF]/20 text-[#FF00FF]": variant === 'default',
-            "bg-[#39FF14]/20 text-[#39FF14]": variant === 'success',
-            "bg-[#FFFF00]/20 text-[#FFFF00]": variant === 'warning',
+            "bg-state-magenta/20 text-state-magenta": variant === 'default',
+            "bg-state-green/20 text-state-green": variant === 'success',
+            "bg-state-yellow/20 text-state-yellow": variant === 'warning',
           },
           className
         )}

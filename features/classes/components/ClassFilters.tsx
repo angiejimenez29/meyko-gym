@@ -58,29 +58,29 @@ export function ClassFilters({ instructors }: { instructors: { id: string, name:
   const selectedInstructorName = instructors.find(i => i.id === instructorId)?.name || 'Todos los instructores'
 
   return (
-    <div className="bg-[#151226] border border-white/10 rounded-[20px] p-5 flex flex-col md:flex-row gap-4 mb-8 shadow-lg">
+    <div className="bg-container border border-foreground/10 rounded-[20px] p-5 flex flex-col md:flex-row gap-4 mb-8 shadow-lg">
       
       {/* Dropdown de Instructores Personalizado */}
       <div className="flex-1" ref={dropdownRef}>
-        <label className="text-[11px] text-white/50 uppercase tracking-wider font-bold mb-2 block ml-1">Filtrar por Instructor</label>
+        <label className="text-[11px] text-foreground/70 uppercase tracking-wider font-bold mb-2 block ml-1">Filtrar por Instructor</label>
         <div className="relative">
           <button
             type="button"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="w-full bg-[#1A1630] border border-white/10 hover:border-[#D6007A]/50 rounded-xl p-3.5 text-[13px] text-white flex items-center justify-between transition-colors shadow-inner"
+            className="w-full bg-background border border-foreground/10 hover:border-[#D6007A]/50 rounded-xl p-3.5 text-[13px] text-foreground flex items-center justify-between transition-colors shadow-inner"
           >
             <div className="flex items-center gap-2">
               <User className="w-4 h-4 text-[#D6007A]" />
               <span className="font-medium truncate">{selectedInstructorName}</span>
             </div>
-            <ChevronDown className={`w-4 h-4 text-white/50 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+            <ChevronDown className={`w-4 h-4 text-foreground/70 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
           </button>
 
           {isDropdownOpen && (
-            <div className="absolute z-50 w-full mt-2 bg-[#1A1630] border border-white/10 rounded-xl shadow-2xl overflow-hidden py-1 animate-in fade-in slide-in-from-top-2">
+            <div className="absolute z-50 w-full mt-2 bg-background border border-foreground/10 rounded-xl shadow-2xl overflow-hidden py-1 animate-in fade-in slide-in-from-top-2">
               <button
                 type="button"
-                className={`w-full text-left px-4 py-3 text-[13px] font-medium transition-colors hover:bg-white/5 ${instructorId === '' ? 'text-[#D6007A] bg-[#D6007A]/10' : 'text-white'}`}
+                className={`w-full text-left px-4 py-3 text-[13px] font-medium transition-colors hover:bg-foreground/5 ${instructorId === '' ? 'text-[#D6007A] bg-[#D6007A]/10' : 'text-foreground'}`}
                 onClick={() => {
                   setInstructorId('')
                   setIsDropdownOpen(false)
@@ -92,7 +92,7 @@ export function ClassFilters({ instructors }: { instructors: { id: string, name:
                 <button
                   key={inst.id}
                   type="button"
-                  className={`w-full text-left px-4 py-3 text-[13px] font-medium transition-colors hover:bg-white/5 ${instructorId === inst.id ? 'text-[#D6007A] bg-[#D6007A]/10' : 'text-white'}`}
+                  className={`w-full text-left px-4 py-3 text-[13px] font-medium transition-colors hover:bg-foreground/5 ${instructorId === inst.id ? 'text-[#D6007A] bg-[#D6007A]/10' : 'text-foreground'}`}
                   onClick={() => {
                     setInstructorId(inst.id)
                     setIsDropdownOpen(false)
@@ -108,7 +108,7 @@ export function ClassFilters({ instructors }: { instructors: { id: string, name:
 
       {/* Selector de Fecha (react-datepicker) */}
       <div className="flex-1">
-        <label className="text-[11px] text-white/50 uppercase tracking-wider font-bold mb-2 block ml-1">Filtrar por Fecha</label>
+        <label className="text-[11px] text-foreground/70 uppercase tracking-wider font-bold mb-2 block ml-1">Filtrar por Fecha</label>
         <div className="relative flex items-center">
           <div className="absolute left-0 pl-3.5 flex items-center pointer-events-none z-10">
             <CalendarIcon className="w-4 h-4 text-[#D6007A]" />
@@ -116,12 +116,12 @@ export function ClassFilters({ instructors }: { instructors: { id: string, name:
           <style dangerouslySetInnerHTML={{__html: `
             .custom-datepicker .react-datepicker__input-container input {
               width: 100%;
-              background-color: #1A1630;
-              border: 1px solid rgba(255,255,255,0.1);
+              background-color: var(--background);
+              border: 1px solid rgba(var(--foreground-rgb), 0.1);
               border-radius: 0.75rem;
               padding: 0.875rem 1rem 0.875rem 2.5rem;
               font-size: 13px;
-              color: white;
+              color: var(--foreground);
               font-weight: 500;
               transition: all 0.2s;
               box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
@@ -136,32 +136,32 @@ export function ClassFilters({ instructors }: { instructors: { id: string, name:
             .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::after,
             .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle::before,
             .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle::after {
-              border-bottom-color: #1A1630 !important;
-              border-top-color: #1A1630 !important;
+              border-bottom-color: var(--background) !important;
+              border-top-color: var(--background) !important;
             }
             
             .react-datepicker {
-              background-color: #1A1630 !important;
-              border: 1px solid rgba(255,255,255,0.1) !important;
+              background-color: var(--background) !important;
+              border: 1px solid rgba(var(--foreground-rgb), 0.1) !important;
               border-radius: 1rem !important;
               font-family: inherit !important;
               box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
             }
             .react-datepicker__header {
-              background-color: #151226 !important;
-              border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+              background-color: var(--container) !important;
+              border-bottom: 1px solid rgba(var(--foreground-rgb), 0.05) !important;
               border-top-left-radius: 1rem !important;
               border-top-right-radius: 1rem !important;
             }
             .react-datepicker__current-month, 
             .react-datepicker-time__header, 
             .react-datepicker-year-header {
-              color: white !important;
+              color: var(--foreground) !important;
             }
             .react-datepicker__day-name, 
             .react-datepicker__day, 
             .react-datepicker__time-name {
-              color: rgba(255,255,255,0.8) !important;
+              color: rgba(var(--foreground-rgb), 0.8) !important;
             }
             .react-datepicker__day:hover,
             .react-datepicker__month-text:hover,
@@ -169,7 +169,7 @@ export function ClassFilters({ instructors }: { instructors: { id: string, name:
             .react-datepicker__year-text:hover {
               background-color: rgba(214, 0, 122, 0.3) !important;
               border-radius: 0.5rem !important;
-              color: white !important;
+              color: var(--foreground) !important;
             }
             .react-datepicker__day--selected, 
             .react-datepicker__day--keyboard-selected {
@@ -178,7 +178,7 @@ export function ClassFilters({ instructors }: { instructors: { id: string, name:
               border-radius: 0.5rem !important;
             }
             .react-datepicker__day--outside-month {
-              color: rgba(255,255,255,0.3) !important;
+              color: rgba(var(--foreground-rgb), 0.3) !important;
             }
           `}} />
           <DatePicker
@@ -196,7 +196,7 @@ export function ClassFilters({ instructors }: { instructors: { id: string, name:
       <div className="flex gap-3 items-end md:w-auto w-full pt-2 md:pt-0">
         <button 
           onClick={handleClear}
-          className="flex-1 md:flex-none h-[46px] flex items-center justify-center px-4 text-[13px] font-semibold text-white/60 bg-white/5 rounded-xl hover:bg-white/10 transition-colors whitespace-nowrap"
+          className="flex-1 md:flex-none h-[46px] flex items-center justify-center px-4 text-[13px] font-semibold text-foreground/80 bg-foreground/5 rounded-xl hover:bg-foreground/10 transition-colors whitespace-nowrap"
         >
           Limpiar
         </button>

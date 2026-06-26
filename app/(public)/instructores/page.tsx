@@ -12,13 +12,13 @@ export default async function InstructorsPage() {
   return (
     <div className="w-full max-w-7xl mx-auto px-5 md:px-8 py-12 md:py-16 space-y-16">
       <div className="space-y-4 text-center md:text-left">
-        <h1 className="text-3xl md:text-5xl font-bold text-white">Nuestros Instructores</h1>
-        <p className="text-[15px] md:text-lg text-white/60">Conoce al equipo de profesionales que te guiará en cada paso de tu transformación.</p>
+        <h1 className="text-3xl md:text-5xl font-bold text-foreground">Nuestros Instructores</h1>
+        <p className="text-[15px] md:text-lg text-foreground/80">Conoce al equipo de profesionales que te guiará en cada paso de tu transformación.</p>
       </div>
 
       {!instructorsData || instructorsData.length === 0 ? (
-        <div className="text-center py-20 bg-white/5 rounded-3xl border border-white/10">
-          <p className="text-lg text-white/60 font-medium">Aún no hay instructores registrados.</p>
+        <div className="text-center py-20 bg-foreground/5 rounded-3xl border border-foreground/10">
+          <p className="text-lg text-foreground/80 font-medium">Aún no hay instructores registrados.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
