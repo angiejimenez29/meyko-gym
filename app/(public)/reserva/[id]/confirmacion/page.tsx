@@ -67,22 +67,8 @@ export default async function ConfirmationPage({ params, searchParams }: { param
 
   return (
     <div className="min-h-screen bg-background flex flex-col relative pb-12">
-      {/* Remove back button for confirmation page, or use a custom top bar, but the design shows a hamburger menu. We'll just show Logo and Menu for now */}
-      <div className="flex items-center justify-between px-5 py-4">
-         <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-pink-500 to-purple-500 flex items-center justify-center">
-               <span className="text-white font-bold italic text-sm">M</span>
-            </div>
-            <span className="text-foreground font-semibold">Meikyo Gym</span>
-         </div>
-         <button className="p-2 text-foreground/80">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-         </button>
-      </div>
-
       {/* Hero Banner with gradient */}
       <div className="w-full bg-gradient-to-br from-yellow-400 via-orange-500 to-pink-500 py-10 px-6 text-center text-black relative overflow-hidden mb-6">
-        {/* Decorative circles (Optional bg blobs can be simulated with pseudo elements or absolutely positioned divs) */}
         <div className="absolute top-[-50px] right-[-50px] w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
         <div className="absolute bottom-[-50px] left-[-50px] w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
 
@@ -96,56 +82,86 @@ export default async function ConfirmationPage({ params, searchParams }: { param
         </p>
       </div>
 
-      <div className="w-full max-w-md mx-auto px-5 space-y-6">
-        
+      <div className="w-full max-w-md md:max-w-4xl lg:max-w-5xl mx-auto px-5 space-y-6">
         <BookingStepper currentStep={4} />
 
-        {/* Resumen Card */}
-        <div className="bg-container border border-foreground/5 rounded-2xl p-6 space-y-4">
-          <div className="flex flex-col items-center justify-center p-6 bg-foreground/5 rounded-3xl border border-foreground/10 space-y-2">
-            <span className="text-sm text-foreground/80 uppercase tracking-widest font-semibold">Espacios Reservados</span>
-            <span className="text-state-yellow font-bold text-2xl">{spotsString}</span>
-          </div>
-          
-          <div className="space-y-4 pt-2">
-            <div className="flex justify-between text-sm">
-              <span className="text-foreground/70">Nombre</span>
-              <span className="text-foreground font-medium">{clientName}</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-foreground/70">Celular</span>
-              <span className="text-foreground font-medium">{clientPhone}</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-foreground/70">Instructor</span>
-              <span className="text-foreground font-medium">{instructorName}</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-foreground/70">Día y hora</span>
-              <span className="text-foreground font-medium capitalize">{dateTimeStr}</span>
-            </div>
-            {session.theme && (
-              <div className="flex justify-between text-sm">
-                <span className="text-foreground/70">Temática</span>
-                <span className="text-foreground font-medium">{session.theme}</span>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-start">
+          {/* Columna Izquierda: Mensajes, Próximos pasos y Botón de Inicio */}
+          <div className="md:col-span-7 space-y-6 order-2 md:order-1">
+            {/* Importante Notice */}
+            <div className="bg-state-yellow/10 border border-state-yellow/20 rounded-2xl p-6 flex gap-4 text-sm text-foreground/80 leading-relaxed shadow-inner">
+              <div className="text-2xl mt-0.5">ℹ️</div>
+              <div>
+                <h4 className="text-state-yellow font-bold text-base mb-1">Información Importante</h4>
+                <p>
+                  Llega 10 minutos antes de la clase para prepararte. Escanea el código QR que encontrarás en la entrada del gimnasio para realizar un check-in automático de tu espacio.
+                </p>
               </div>
-            )}
+            </div>
+
+            {/* Next Steps / Welcome Card */}
+            <div className="bg-container border border-foreground/5 rounded-2xl p-6 space-y-4 shadow-lg">
+              <h4 className="text-foreground font-semibold text-lg border-b border-foreground/5 pb-2">¿Qué sigue ahora?</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="bg-background p-4 rounded-xl border border-foreground/5 space-y-2">
+                  <span className="text-pink-500 font-bold text-sm">1. WhatsApp</span>
+                  <p className="text-foreground/75 text-xs">Recibirás un mensaje de confirmación con el ticket digital de tu reserva.</p>
+                </div>
+                <div className="bg-background p-4 rounded-xl border border-foreground/5 space-y-2">
+                  <span className="text-purple-500 font-bold text-sm">2. Check-in</span>
+                  <p className="text-foreground/75 text-xs">Al llegar al gimnasio, muestra tu código en recepción o escanéalo para registrar tu asistencia.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Columna Derecha: Resumen Card */}
+          <div className="md:col-span-5 order-1 md:order-2">
+            <div className="bg-container border border-foreground/5 rounded-2xl p-6 space-y-4 shadow-lg">
+              <h3 className="text-foreground font-semibold text-lg border-b border-foreground/10 pb-3">Detalle de tu Reserva</h3>
+              
+              <div className="flex flex-col items-center justify-center p-6 bg-foreground/5 rounded-2xl border border-foreground/10 space-y-2">
+                <span className="text-xs text-foreground/80 uppercase tracking-widest font-semibold">Espacios Reservados</span>
+                <span className="text-state-yellow font-bold text-2xl">{spotsString}</span>
+              </div>
+              
+              <div className="space-y-3 pt-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-foreground/70">Nombre</span>
+                  <span className="text-foreground font-medium">{clientName}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-foreground/70">Celular</span>
+                  <span className="text-foreground font-medium">{clientPhone}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-foreground/70">Instructor</span>
+                  <span className="text-foreground font-medium">{instructorName}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-foreground/70">Día y hora</span>
+                  <span className="text-foreground font-medium capitalize">{dateTimeStr}</span>
+                </div>
+                {session.theme && (
+                  <div className="flex justify-between text-sm">
+                    <span className="text-foreground/70">Temática</span>
+                    <span className="text-foreground font-medium">{session.theme}</span>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Importante Notice */}
-        <div className="bg-state-yellow/10 border border-state-yellow/20 rounded-2xl p-4 flex gap-3 text-sm text-foreground/80 leading-relaxed shadow-inner">
-            <div className="text-state-yellow mt-0.5">ℹ️</div>
-            <p>
-            <strong className="text-state-yellow font-bold">Importante:</strong> Llega 10 minutos antes de la clase. Escanea el QR en la entrada para un check-in automático.
-            </p>
+        {/* Botón de Inicio Centrado */}
+        <div className="flex justify-center pt-8">
+          <Link href="/" className="w-full max-w-xs md:max-w-md">
+            <button className="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold rounded-xl py-4 transition-transform hover:scale-[1.02] active:scale-95 shadow-lg shadow-orange-500/20 text-lg">
+              Volver al Inicio
+            </button>
+          </Link>
         </div>
-
-        <Link href="/" className="block w-full mt-8">
-          <button className="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold rounded-xl py-4 transition-transform hover:scale-[1.02] active:scale-95 shadow-lg shadow-orange-500/20 text-lg">
-            Volver al Inicio
-          </button>
-        </Link>
       </div>
     </div>
   )

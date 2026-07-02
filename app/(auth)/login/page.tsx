@@ -1,6 +1,6 @@
 "use client"
 
-import { useActionState } from 'react'
+import { useActionState, useState } from 'react'
 import { useFormStatus } from 'react-dom'
 import { login } from '@/features/auth/actions/login'
 import Link from 'next/link'
@@ -10,14 +10,14 @@ const initialState = {
   error: null as string | null,
 }
 
-function SubmitButton() {
+function SubmitButton({ disabled }: { disabled: boolean }) {
   const { pending } = useFormStatus()
   
   return (
     <button
       type="submit"
-      disabled={pending}
-      className="w-full bg-[#D6007A] text-white font-medium py-3.5 px-4 rounded-xl shadow-[0_4px_25px_rgba(214,0,122,0.3)] hover:shadow-[0_0_30px_rgba(214,0,122,0.6)] hover:scale-[1.02] transition-all flex justify-center items-center gap-2 disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed"
+      disabled={pending || disabled}
+      className="w-full bg-[#D6007A] text-white font-medium py-3.5 px-4 rounded-xl shadow-[0_4px_25px_rgba(214,0,122,0.3)] hover:shadow-[0_0_30px_rgba(214,0,122,0.6)] hover:scale-[1.02] transition-all flex justify-center items-center gap-2 disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed"
     >
       {pending ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Iniciar Sesión'}
     </button>
@@ -26,6 +26,40 @@ function SubmitButton() {
 
 export default function LoginPage() {
   const [state, formAction] = useActionState(login, initialState)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [emailError, setEmailError] = useState<string | null>(null)
+  const [passwordError, setPasswordError] = useState<string | null>(null)
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value
+    setEmail(val)
+    
+    if (val.length === 0) {
+      setEmailError(null)
+    } else if (!val.includes('@')) {
+      setEmailError("El correo debe llevar un '@'")
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+      setEmailError("Formato de correo inválido (ej. usuario@dominio.com)")
+    } else {
+      setEmailError(null)
+    }
+  }
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value
+    setPassword(val)
+    
+    if (val.length === 0) {
+      setPasswordError(null)
+    } else if (val.length < 6) {
+      setPasswordError("La contraseña debe tener al menos 6 caracteres")
+    } else {
+      setPasswordError(null)
+    }
+  }
+
+  const isFormInvalid = !!emailError || !!passwordError || !email || !password
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -39,52 +73,81 @@ export default function LoginPage() {
            </div>
         </div>
         <h1 className="text-2xl font-medium text-[#D6007A] mb-2 tracking-wide">Meikyo Gym</h1>
-        <p className="text-[#84849A] text-[13px] font-medium tracking-wide">Portal de Instructora</p>
+        <p className="text-[#84849A] text-[13px] font-medium tracking-wide">Portal de Instructor/Instructora</p>
       </div>
 
       <form action={formAction} className="space-y-4 w-full">
-        <div className="relative">
-          <label htmlFor="login-email" className="sr-only">Correo Electrónico</label>
-          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#84849A]">
-            <Mail className="w-4 h-4" />
+        {/* Email Field */}
+        <div className="space-y-1">
+          <div className="relative">
+            <label htmlFor="login-email" className="sr-only">Correo Electrónico</label>
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#84849A]">
+              <Mail className="w-4 h-4" />
+            </div>
+            <input
+              id="login-email"
+              type="email"
+              name="email"
+              required
+              value={email}
+              onChange={handleEmailChange}
+              autoComplete="email"
+              inputMode="email"
+              className={`w-full bg-container border rounded-2xl pl-12 pr-4 py-3.5 text-[13px] text-foreground placeholder-foreground/50 focus:outline-none focus:bg-background transition-colors ${
+                emailError 
+                  ? 'border-red-500 focus:border-red-500' 
+                  : 'border-foreground/5 focus:border-[#D6007A]/50'
+              }`}
+              placeholder="cesar.reyes@gmail.com"
+            />
           </div>
-          <input
-            id="login-email"
-            type="email"
-            name="email"
-            required
-            autoComplete="email"
-            inputMode="email"
-            className="w-full bg-container border border-foreground/5 rounded-2xl pl-12 pr-4 py-3.5 text-[13px] text-foreground placeholder-foreground/50 focus:outline-none focus:border-[#D6007A]/50 focus:bg-background transition-colors"
-            placeholder="cesar.reyes@gmail.com"
-          />
+          {emailError && (
+            <p className="text-[11px] text-red-500 font-medium pl-2 animate-in fade-in slide-in-from-top-1">
+              {emailError}
+            </p>
+          )}
         </div>
 
-        <div className="relative">
-          <label htmlFor="login-password" className="sr-only">Contraseña</label>
-          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#84849A]">
-            <Lock className="w-4 h-4" />
+        {/* Password Field */}
+        <div className="space-y-1">
+          <div className="relative">
+            <label htmlFor="login-password" className="sr-only">Contraseña</label>
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#84849A]">
+              <Lock className="w-4 h-4" />
+            </div>
+            <input
+              id="login-password"
+              type="password"
+              name="password"
+              required
+              value={password}
+              onChange={handlePasswordChange}
+              autoComplete="current-password"
+              className={`w-full bg-container border rounded-2xl pl-12 pr-4 py-3.5 text-[13px] text-foreground placeholder-foreground/50 focus:outline-none focus:bg-background transition-colors ${
+                passwordError 
+                  ? 'border-red-500 focus:border-red-500' 
+                  : 'border-foreground/5 focus:border-[#D6007A]/50'
+              }`}
+              placeholder="••••••••"
+            />
           </div>
-          <input
-            id="login-password"
-            type="password"
-            name="password"
-            required
-            autoComplete="current-password"
-            className="w-full bg-container border border-foreground/5 rounded-2xl pl-12 pr-4 py-3.5 text-[13px] text-foreground placeholder-foreground/50 focus:outline-none focus:border-[#D6007A]/50 focus:bg-background transition-colors"
-            placeholder="••••••••"
-          />
+          {passwordError && (
+            <p className="text-[11px] text-red-500 font-medium pl-2 animate-in fade-in slide-in-from-top-1">
+              {passwordError}
+            </p>
+          )}
         </div>
 
+        {/* Server error */}
         {state?.error && (
           <div className="bg-red-500/10 border border-red-500/30 rounded-2xl p-3 flex items-center justify-center gap-2 mt-4 animate-in fade-in slide-in-from-top-2">
             <AlertCircle className="w-4 h-4 text-red-500 shrink-0" />
-            <p className="text-[12px] text-red-200 font-medium">{state.error}</p>
+            <p className="text-[12px] text-red-500 font-semibold">{state.error}</p>
           </div>
         )}
 
         <div className="pt-2">
-          <SubmitButton />
+          <SubmitButton disabled={isFormInvalid} />
         </div>
       </form>
 
