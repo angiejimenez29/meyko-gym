@@ -9,13 +9,13 @@ export function BookingStepper({ currentStep }: BookingStepperProps) {
   const steps = [1, 2, 3, 4]
 
   return (
-    <div className="flex items-center justify-center w-full px-4 mb-8">
+    <div className="flex items-center justify-between w-full max-w-xs md:max-w-md mx-auto px-4 mb-8">
       {steps.map((step, index) => {
         const isCompleted = step < currentStep
         const isActive = step === currentStep
 
         return (
-          <div key={step} className="flex items-center">
+          <div key={step} className="flex items-center flex-1 last:flex-initial">
             {/* Circle */}
             <div
               className={cn(
@@ -30,7 +30,7 @@ export function BookingStepper({ currentStep }: BookingStepperProps) {
             {index < steps.length - 1 && (
               <div
                 className={cn(
-                  'h-1 transition-colors',
+                  'h-1 flex-1 mx-2 transition-colors rounded-full',
                   step < currentStep ? 'bg-state-yellow' : 'bg-foreground/10'
                 )}
               />
